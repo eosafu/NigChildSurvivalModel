@@ -3,7 +3,7 @@ library(tidyverse)
 library(INLA)
 library(BayesX) # for bnd2sp() & read.bnd()
 library(spdep) # for poly2nb()
-#dat.surv <- read.csv("Cleaned_data_new_m.csv") # Load the dat.surv.Rdata
+#dat.surv <- read.csv("Cleaned_data_new_m.csv") # Load the sample dataset (dat.surv.Rdata) from this repository.
 dat.surv %>% names
 
 
