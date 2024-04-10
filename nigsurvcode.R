@@ -14,7 +14,7 @@ dat.surv %>% names
 # Convert death day to the same scale 
 
 ###################
-# Note 
+# Note (https://dhsprogram.com/pubs/pdf/DHSG4/Recode5DHS_23August2012.pdf)
 #Age at death (AaD) of the child as reported in the questionnaire. The first digit of the age at death
 #gives the units in which it was reported: 1 - Days, 2 - Months, 3 - Years, 9 - Special
 #responses. The last two digits give the age at death in those units. Age at death is usually
