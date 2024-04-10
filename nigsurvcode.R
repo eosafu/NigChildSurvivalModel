@@ -3,7 +3,7 @@ library(tidyverse)
 library(INLA)
 library(BayesX) # for bnd2sp() & read.bnd()
 library(spdep) # for poly2nb()
-dat.surv <- read.csv("Cleaned_data_new_m.csv")
+#dat.surv <- read.csv("Cleaned_data_new_m.csv") # Load the dat.surv.Rdata
 dat.surv %>% names
 
 
