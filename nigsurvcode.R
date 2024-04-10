@@ -68,7 +68,7 @@ for(i in 1:length(dat.surv$AaD)){
 dat.surv1  = dat.surv %>%as_tibble()%>% mutate(dayofD=(dayofD)/30,delta=delta)
 # Find children alive
 id.na2 <-   is.na(dat.surv1$dayofD) 
-# Assign those children alive their current age in months at survey date
+# Assign those children alive their current age (in months) at the survey date
 dat.surv1$dayofD[id.na2]<- dat.surv1$C_age[id.na2]
 # Assign the follow-up time (59) months for children who were still alive and older than 59
 id.na2 <-   is.na(dat.surv1$dayofD) 
@@ -88,14 +88,14 @@ dat.surv2%>%names
 
 #----Map for Spatial component
 
-map=read.bnd("nigeria.bnd")
+map=read.bnd("nigeria.bnd")  # Download from repository
 plot(map)
 map_shp=bnd2sp(map)
 
 temp <- poly2nb(map_shp)
 nb2INLA("LDN.graph", temp)
 
-H=inla.read.graph(filename="LDN.graph")
+H=inla.read.graph(filename="LDN.graph") # or download from repository
 A <- inla.graph2matrix(H)
 image(A,xlab="",ylab="")
 
@@ -122,12 +122,12 @@ formula = sinla.vet ~ -1 +sex_female+ edu_pri +edu_sec +edu_high+wealth_poorer+w
 sinla.vet <- inla.surv((dat.surv2$dayofD+0.1),dat.surv2$delta)
   
 #####%%%%%
-# Using Exponential hazard model
+# Using the Exponential hazard model
 ####%%%%%%
 exp.vet <- inla(formula, data = dat.surv2, family = "exponentialsurv",
                 control.compute = list(dic=TRUE, cpo=TRUE, waic=TRUE))
 #####%%%%%
-# Using Cox hazard model
+# Using the Cox hazard model
 ####%%%%%%
 cox.vet <- inla(formula, data = dat.surv2, family = "coxph",
                     control.compute = list(dic=TRUE, cpo=TRUE, waic=TRUE))
@@ -142,13 +142,13 @@ gamma.vet <- inla(formula, data = dat.surv2, family = "gammasurv ",
                   scale = prec.scale,
                     control.compute = list(dic=TRUE, cpo=TRUE, waic=TRUE))
 #####%%%%%
-# Using weibull hazard model
+# Using the Weibull hazard model
 ####%%%%%%
 weibull.vet <- inla(formula, data = dat.surv2, family = "weibullsurv",
                   control.family = list(variant=0),
                   control.compute = list(dic=TRUE, cpo=TRUE, waic=TRUE))
 #####%%%%%
-# Using lognormal hazard model
+# Using the lognormal hazard model
 ####%%%%%%
 lognorm.vet <- inla(formula, data = dat.surv2, family = "lognormalsurv",
                     control.family = list(variant=0),
