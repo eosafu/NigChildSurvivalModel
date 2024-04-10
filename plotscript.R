@@ -40,7 +40,7 @@ require(rgdal)
 fn <- file.path(tempdir(), "nigeria-lgas.zip", fsep = "\\")
 download.file("https://s3-eu-west-1.amazonaws.com/cfa-openafrica/resources/372a616a-66cc-41f7-ac91-d8af8f23bc2b/nigeria-lgas.zip?AWSAccessKeyId=AKIAJZDSKF5QFOBBR4RQ&Expires=1618247755&Signature=dcSAuxTqhtkTzlfr4Tpn5g5eyJI%", fn)
 utils::unzip(fn, exdir = tempdir())
-shp <- readOGR(dsn ="C:/Users/11494792/Downloads/Nigeria_surv/nigeria-lgas/new_lga_nigeria_2003.shp", stringsAsFactors = F)
+shp <- readOGR(dsn ="Nigeria_surv/nigeria-lgas/new_lga_nigeria_2003.shp", stringsAsFactors = F)
 
 shp.map <- fortify(shp, region = "STATE")
 
